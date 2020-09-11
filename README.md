@@ -1,5 +1,5 @@
 # DbMAPIExample
-A very brief example of a plugin using the API of Dead by Moonlight.
+A very brief example of a plugin using the API of [Dead by Moonlight](https://www.spigotmc.org/resources/dead-by-moonlight.83310/).
 # Tips
 ## Regarding Constructors
 ### Perks
