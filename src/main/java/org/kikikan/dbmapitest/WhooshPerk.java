@@ -11,6 +11,7 @@ import org.kikikan.deadbymoonlight.events.player.survivor.modifiableevents.GetSc
 import org.kikikan.deadbymoonlight.game.PerkUser;
 import org.kikikan.deadbymoonlight.game.Survivor;
 import org.kikikan.deadbymoonlight.perks.CooldownPerk;
+import org.kikikan.deadbymoonlight.util.PointCategory;
 
 @SuppressWarnings({"unused"})
 public final class WhooshPerk extends CooldownPerk { // No need to implement CooldownController, as CooldownPerk has already implemented it.
@@ -32,6 +33,8 @@ public final class WhooshPerk extends CooldownPerk { // No need to implement Coo
     public boolean needsObsession() {
         return false;
     }
+
+    public int amountOfTotemsRequired() {return 0;}
 
     public String getName() {
         return "Whoosh";
@@ -57,6 +60,7 @@ public final class WhooshPerk extends CooldownPerk { // No need to implement Coo
             DeadByMoonlightAPITest pl = (DeadByMoonlightAPITest)getPlugin();
             pl.whoosh(getPerkUser().getPlayer()); // Uses a method from the main class.
             getPerkUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 0));
+            getPerkUser().addPoint(PointCategory.DEVIOUSNESS, 100, "Whooshed!", true); // We don't know if the PerkUser is a Survivor or Killer, but it does not matter. Deviousness is the second category for the Killer, so if the PerkUser is a Survivor, the Survivor will get points in the SURVIVAL category. (Which is the second category for the Survivors)
             if (getPerkUser() instanceof Survivor){
                 Survivor s = (Survivor)getPerkUser();
                 s.resetScratchMarkDuration(); // Forces GetScratchMarkDurationEvent to be called.

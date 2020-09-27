@@ -2,5 +2,5 @@ name: DeadByMoonlightAPITest
 main: org.kikikan.dbmapitest.DeadByMoonlightAPITest
 version: 1.0
 author: Kikikan
-api-version: 1.14
+api-version: 1.13
 depend: [DeadByMoonlight]
