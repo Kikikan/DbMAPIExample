@@ -38,8 +38,7 @@
             <groupId>org.kikikan</groupId>
             <artifactId>deadbymoonlight</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>C:\Users\kikik\IdeaProjects\DbMAPITest\DeadByMoonlight.jar</systemPath>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
