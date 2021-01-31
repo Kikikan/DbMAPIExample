@@ -23,8 +23,12 @@ As they get constructed by you, there are no restrictions regarding the construc
 Just create a `public void something()` method, with the parameter being the event you want to listen to.
 
 Example: `public void onHealthChange(HealthStateChangedEvent event) {...}`
+## Custom modifiable (through the appropriate .yml file) values
+While using any class which derived from Configurable (Any Perk, Item, or GameComponent) you can easily work with values that can be modified by the server.
+Simply use the `getValueFromConfig(id, defaultValue)` method. If the config file does not have the specified id, the method will write the default value to the file and will return it. The method uses Bukkit's built-in FileConfiguration class.
 ## Skill Checks
 You can create a Skill Check using the static method `SkillCheck.createSkillCheck()` .
+
 Example: `SkillCheck skillCheck = SkillCheck.createSkillCheck(plugin, survivor, SkillCheckReason.CUSTOM,
 (survivor) -> { // Great Skill Check },
 (survivor) -> { // Good Skill Check },
