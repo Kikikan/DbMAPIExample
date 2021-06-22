@@ -14,24 +14,6 @@ public class LuckyCharmItem extends Item {
     }
 
     @Override
-    public String getItemName() {
-        switch (getTier()){
-            case COMMON:
-                return "Dirty Cobblestone";
-            case UNCOMMON:
-                return "Some Coal";
-            case RARE:
-                return "Heavy Iron Ingot";
-            case VERY_RARE:
-                return "Shiny Gold Bar";
-            case ULTRA_RARE:
-                return "AN EPIC DIAMOND";
-            default:
-                return "";
-        }
-    }
-
-    @Override
     public String getDescription() {
         return "Increases your chances of opening ultra rare Items from Chests.";
     }

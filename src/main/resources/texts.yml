@@ -1,0 +1,23 @@
+eng:
+  perks:
+    whoosh:
+      name: Whoosh
+      description:
+        - §fYour experiences with social anxiety
+        - §fgave you the ability to become
+        - §finvisible to all creatures.
+        - ''
+        - §fAfter Vaulting, you leave no Scratch Marks,
+        - §fwhile also gaining the Invisible Potion Effect
+        - §ffor §e{ticks/20} seconds§f.
+        - ''
+        - §fWhoosh has a cooldown of §e{cooldownTime/20} seconds§f.
+      whooshPoint: Whooshed!
+  items:
+    luckycharm:
+      names:
+        common: Dirty Cobblestone
+        uncommon: Some Coal
+        rare: Heavy Iron Ingot
+        veryRare: Shiny Gold Bar
+        ultraRare: AN EPIC DIAMOND
