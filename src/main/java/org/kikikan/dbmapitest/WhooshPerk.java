@@ -4,24 +4,27 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.kikikan.deadbymoonlight.LanguageManager;
-import org.kikikan.deadbymoonlight.cooldowns.CustomCooldown;
+import org.kikikan.deadbymoonlight.cooldowns.BukkitCooldown;
+import org.kikikan.deadbymoonlight.cooldowns.Cooldown;
 import org.kikikan.deadbymoonlight.events.player.both.VaultEvent;
 import org.kikikan.deadbymoonlight.events.player.survivor.modifiableevents.GetScratchMarkDurationEvent;
 import org.kikikan.deadbymoonlight.game.PerkUser;
 import org.kikikan.deadbymoonlight.game.Survivor;
 import org.kikikan.deadbymoonlight.perks.CooldownPerk;
 import org.kikikan.deadbymoonlight.util.PointCategory;
+import org.kikikan.deadbymoonlight.util.TimerEventType;
 
 @SuppressWarnings({"unused"})
-public final class WhooshPerk extends CooldownPerk { // No need to implement CooldownController, as CooldownPerk has already implemented it.
+public final class WhooshPerk extends CooldownPerk {
 
     private final int ticks;
-    private final CustomCooldown scratchMarkTimer;
+    private final Cooldown scratchMarkTimer;
 
     public WhooshPerk(JavaPlugin plugin, PerkUser p) {
         super(plugin, p, false);
         ticks = (int)getValueFromConfig("ticks", 100); // Custom setting that can be changed in the perks.yml; If the id "time" is not in the file yet, it will write the default value (100) into the file and will return it.
-        scratchMarkTimer = new CustomCooldown(getPlugin(), this, ticks);
+        scratchMarkTimer = new BukkitCooldown(getPlugin(), ticks);
+        scratchMarkTimer.addRunnable(this::onCooldownOff, TimerEventType.OFF);
     }
 
     @Override
@@ -57,9 +60,8 @@ public final class WhooshPerk extends CooldownPerk { // No need to implement Coo
         }
     }
 
-    @Override
-    protected void onCooldownOff(CustomCooldown cooldown) {
-        if (cooldown == scratchMarkTimer && getPerkUser() instanceof Survivor){
+    private void onCooldownOff() {
+        if (getPerkUser() instanceof Survivor){
             Survivor survivor = (Survivor)getPerkUser();
             survivor.resetScratchMarkDuration(); // Forces GetScratchMarkDurationEvent to be called.
         }
