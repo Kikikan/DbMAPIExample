@@ -6,6 +6,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.kikikan.deadbymoonlight.LanguageManager;
 import org.kikikan.deadbymoonlight.cooldowns.BukkitCooldown;
 import org.kikikan.deadbymoonlight.cooldowns.Cooldown;
+import org.kikikan.deadbymoonlight.events.EventHandler;
 import org.kikikan.deadbymoonlight.events.player.both.VaultEvent;
 import org.kikikan.deadbymoonlight.events.player.survivor.modifiableevents.GetScratchMarkDurationEvent;
 import org.kikikan.deadbymoonlight.game.PerkUser;
@@ -45,8 +46,9 @@ public final class WhooshPerk extends CooldownPerk {
         return "Whoosh";
     }
 
+    @EventHandler
     public void onFastVault(VaultEvent event){
-        if (!isTurnedOn() && event.player.equals(getPerkUser())){
+        if (!isTurnedOn() && event.getPerkUser().equals(getPerkUser())){
             on(); // Turns on the Cooldown.
             DeadByMoonlightAPITest pl = (DeadByMoonlightAPITest)getPlugin();
             pl.whoosh(getPerkUser().getPlayer()); // Uses a method from the main class.
@@ -72,6 +74,7 @@ public final class WhooshPerk extends CooldownPerk {
         return 1200;
     }
 
+    @EventHandler
     public void onScratchMarkEvent(GetScratchMarkDurationEvent event){
         if (scratchMarkTimer.isRunning()){
             event.setValue(0);

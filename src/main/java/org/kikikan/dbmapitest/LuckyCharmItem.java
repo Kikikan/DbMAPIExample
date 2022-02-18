@@ -2,6 +2,7 @@ package org.kikikan.dbmapitest;
 
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kikikan.deadbymoonlight.events.EventHandler;
 import org.kikikan.deadbymoonlight.events.player.survivor.GetItemTierEvent;
 import org.kikikan.deadbymoonlight.game.Item;
 import org.kikikan.deadbymoonlight.game.Survivor;
@@ -77,6 +78,7 @@ public class LuckyCharmItem extends Item {
         }
     }
 
+    @EventHandler
     public void onItemTier(GetItemTierEvent event){
         event.multiplyUltraRareThreshold(getModifier());
         removeDurability();
